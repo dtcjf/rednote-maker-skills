@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小红书图文</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'KaiTi', 'STKaiti', 'BiauKai', serif;
+            background: #2C2C2C;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 0;
+        }
+
+        #container {
+            width: 1080px;
+            height: 1440px;
+            padding: 60px 50px;
+            background: #F5F5DC;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 0 100px rgba(139,69,19,0.1);
+        }
+
+        /* 装饰图案 */
+        .pattern {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            border: 2px solid #8B4513;
+            pointer-events: none;
+        }
+
+        .pattern::before,
+        .pattern::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #8B4513;
+        }
+
+        .pattern::before {
+            top: -2px;
+            left: -2px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .pattern::after {
+            bottom: -2px;
+            right: -2px;
+            border-left: none;
+            border-top: none;
+        }
+
+        /* 标题 */
+        .title {
+            font-size: 50px;
+            font-weight: bold;
+            color: #1A1A1A;
+            line-height: 1.5;
+            margin-bottom: 40px;
+            text-align: center;
+            letter-spacing: 8px;
+            font-family: 'Ma Shan Zheng', cursive;
+        }
+
+        /* 内容 */
+        .content {
+            font-size: 40px;
+            color: #333333;
+            line-height: 2.2;
+            flex: 1;
+            text-align: justify;
+            letter-spacing: 3px;
+        }
+
+        .content p, .content br {
+            margin-bottom: 25px;
+            text-indent: 2em;
+        }
+
+        /* 重点内容 */
+        .content .highlight {
+            color: #8B0000;
+            font-weight: bold;
+            text-decoration: underline;
+            text-decoration-color: #8B0000;
+            text-underline-offset: 4px;
+        }
+
+        .content .tip {
+            color: #B8860B;
+            font-weight: bold;
+        }
+
+        .content .note {
+            color: #006400;
+            font-weight: bold;
+        }
+
+        /* 标签 */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 40px;
+            padding-top: 30px;
+            justify-content: center;
+            border-top: 1px solid #D4C4A8;
+        }
+
+        .tag {
+            background: #1A1A1A;
+            color: #F5F5DC;
+            padding: 12px 28px;
+            border-radius: 2px;
+            font-size: 24px;
+            letter-spacing: 2px;
+        }
+
+        /* 底部 */
+        .footer {
+            margin-top: auto;
+            padding-top: 30px;
+            text-align: center;
+            color: #8B7355;
+            font-size: 22px;
+            letter-spacing: 5px;
+        }
+
+        /* 页码 */
+        .page-num {
+            position: absolute;
+            bottom: 25px;
+            right: 50px;
+            font-size: 24px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="pattern"></div>
+
+        <h1 class="title">标题标题标题</h1>
+
+        <div class="content">
+            <p>正文内容正文内容正文内容正文内容正文内容正文内容正文内容正文内容正文内容正文内容正文内容正文内容正文内容正文内容正文内容。</p>
+        </div>
+
+        <div class="tags">
+            <span class="tag">#话题1</span>
+            <span class="tag">#话题2</span>
+            <span class="tag">#话题3</span>
+        </div>
+
+        <div class="footer">
+            小红书
+        </div>
+
+        <span class="page-num">1/1</span>
+    </div>
+</body>
+</html>

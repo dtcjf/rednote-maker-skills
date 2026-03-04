@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小红书图文</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', serif;
+            background: #F5E6D3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 0;
+        }
+
+        #container {
+            width: 1080px;
+            height: 1440px;
+            padding: 60px 50px;
+            background: #FFFDF8;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 3px double #8B4513;
+            position: relative;
+        }
+
+        /* 装饰角 */
+        #container::before {
+            content: '❧';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 40px;
+            color: #8B4513;
+        }
+
+        #container::after {
+            content: '❧';
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 40px;
+            color: #8B4513;
+            transform: rotate(180deg);
+        }
+
+        /* 标题 */
+        .title {
+            font-size: 50px;
+            font-weight: bold;
+            color: #8B4513;
+            line-height: 1.4;
+            margin-bottom: 40px;
+            text-align: center;
+            font-family: 'KaiTi', 'STKaiti', serif;
+        }
+
+        /* 内容 */
+        .content {
+            font-size: 42px;
+            color: #4A4A4A;
+            line-height: 2;
+            flex: 1;
+            font-family: 'KaiTi', 'STKaiti', serif;
+        }
+
+        .content p, .content br {
+            margin-bottom: 24px;
+            text-align: justify;
+        }
+
+        /* 重点内容 */
+        .content .highlight {
+            color: #B22222;
+            font-weight: bold;
+            text-decoration: underline;
+            text-decoration-color: #B22222;
+        }
+
+        .content .tip {
+            color: #DAA520;
+            font-weight: bold;
+        }
+
+        .content .note {
+            color: #6B8E23;
+            font-weight: bold;
+        }
+
+        /* 标签 */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #D4C4B0;
+            justify-content: center;
+        }
+
+        .tag {
+            background: #8B4513;
+            color: #FFFDF8;
+            padding: 10px 22px;
+            border-radius: 4px;
+            font-size: 24px;
+        }
+
+        /* 底部 */
+        .footer {
+            margin-top: auto;
+            padding-top: 30px;
+            text-align: center;
+            color: #999;
+            font-size: 22px;
+            font-family: sans-serif;
+        }
+
+        /* 页码 */
+        .page-num {
+            position: absolute;
+            bottom: 25px;
+            right: 50px;
+            font-size: 26px;
+            color: #999;
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1 class="title">标题标题标题</h1>
+
+        <div class="content">
+            <p>正文内容正文内容正文内容正文内容正文内容正文内容正文内容正文内容正文内容正文内容正文内容正文内容正文内容正文内容。</p>
+        </div>
+
+        <div class="tags">
+            <span class="tag">#话题1</span>
+            <span class="tag">#话题2</span>
+            <span class="tag">#话题3</span>
+        </div>
+
+        <div class="footer">
+            <span>小红书</span>
+        </div>
+
+        <span class="page-num">1/1</span>
+    </div>
+</body>
+</html>

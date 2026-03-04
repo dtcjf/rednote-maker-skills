@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小红书封面</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #FF9A9E 0%, #FECFEF 50%, #FECFEF 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 0;
+        }
+
+        #container {
+            width: 1080px;
+            height: 1080px;
+            padding: 80px 60px;
+            background: rgba(255, 255, 255, 0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(255, 107, 107, 0.3);
+            text-align: center;
+        }
+
+        /* 封面标题 */
+        .cover-title {
+            font-size: 100px;
+            font-weight: 900;
+            background: linear-gradient(90deg, #FF6B6B, #FF8E53);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.15;
+            margin-bottom: 50px;
+        }
+
+        /* 副标题 */
+        .cover-subtitle {
+            font-size: 44px;
+            color: #555555;
+            line-height: 1.5;
+            margin-bottom: 80px;
+            max-width: 880px;
+        }
+
+        /* 封面标签 */
+        .cover-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 24px;
+        }
+
+        .cover-tag {
+            background: linear-gradient(90deg, #FF6B6B, #FF8E53);
+            color: #FFFFFF;
+            padding: 20px 42px;
+            border-radius: 50px;
+            font-size: 32px;
+            font-weight: 600;
+        }
+
+        /* 底部 */
+        .cover-footer {
+            margin-top: auto;
+            padding-top: 40px;
+            color: #FF6B6B;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1 class="cover-title">糖果渐变标题</h1>
+
+        <p class="cover-subtitle">糖果渐变风格的副标题，适合甜美可爱类内容</p>
+
+        <div class="cover-tags">
+            <span class="cover-tag">#甜美</span>
+            <span class="cover-tag">#可爱</span>
+            <span class="cover-tag">#分享</span>
+        </div>
+
+        <div class="cover-footer">小红书</div>
+    </div>
+</body>
+</html>

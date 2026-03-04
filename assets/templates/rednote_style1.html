@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小红书图文</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+            background: #FAFAFA;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 0;
+        }
+
+        #container {
+            width: 1080px;
+            height: 1440px;
+            padding: 60px 50px;
+            background: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
+        }
+
+        /* 标题 */
+        .title {
+            font-size: 52px;
+            font-weight: bold;
+            color: #1A1A1A;
+            line-height: 1.4;
+            margin-bottom: 40px;
+            position: relative;
+            padding-left: 20px;
+            border-left: 6px solid #1A1A1A;
+        }
+
+        /* 内容 */
+        .content {
+            font-size: 44px;
+            color: #333333;
+            line-height: 1.9;
+            flex: 1;
+        }
+
+        .content p, .content br {
+            margin-bottom: 22px;
+        }
+
+        /* 重点内容 */
+        .content .highlight {
+            color: #E91E63;
+            font-weight: 600;
+            background: linear-gradient(transparent 60%, rgba(233,30,99,0.15) 60%);
+        }
+
+        .content .tip {
+            color: #FF5722;
+            font-weight: 600;
+        }
+
+        .content .note {
+            color: #9C27B0;
+            font-weight: 600;
+        }
+
+        /* 标签 */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid #1A1A1A;
+        }
+
+        .tag {
+            background: #1A1A1A;
+            color: #FFFFFF;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 24px;
+            font-weight: 500;
+        }
+
+        /* 底部 */
+        .footer {
+            margin-top: auto;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            color: #999;
+            font-size: 24px;
+        }
+
+        /* 页码 */
+        .page-num {
+            position: absolute;
+            bottom: 25px;
+            right: 50px;
+            font-size: 26px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1 class="title">标题标题标题</h1>
+
+        <div class="content">
+            <p>正文内容正文内容正文内容正文内容正文内容正文内容正文内容正文内容正文内容正文内容正文内容正文内容正文内容正文内容。</p>
+        </div>
+
+        <div class="tags">
+            <span class="tag">#话题1</span>
+            <span class="tag">#话题2</span>
+            <span class="tag">#话题3</span>
+        </div>
+
+        <div class="footer">
+            <span>👍 收藏</span>
+            <span>❤️ 小红书</span>
+        </div>
+
+        <span class="page-num">1/1</span>
+    </div>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小红书图文</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif;
+            background: #FFF8E7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 0;
+        }
+
+        #container {
+            width: 1080px;
+            height: 1440px;
+            padding: 60px 50px;
+            background: #FFFBF0;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* 顶部装饰 */
+        .sticker {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 80px;
+            opacity: 0.9;
+        }
+
+        /* 标题 */
+        .title {
+            font-size: 52px;
+            font-weight: 800;
+            color: #5D4037;
+            line-height: 1.4;
+            margin-bottom: 35px;
+            padding: 20px 30px;
+            background: #FFF3E0;
+            border-radius: 20px;
+            border-left: 8px solid #FFB74D;
+        }
+
+        /* 内容 */
+        .content {
+            font-size: 44px;
+            color: #6D4C41;
+            line-height: 1.9;
+            flex: 1;
+        }
+
+        .content p, .content br {
+            margin-bottom: 20px;
+        }
+
+        /* 重点内容 */
+        .content .highlight {
+            color: #E65100;
+            font-weight: bold;
+            background: #FFE0B2;
+            padding: 4px 10px;
+            border-radius: 8px;
+        }
+
+        .content .tip {
+            color: #FF8F00;
+            font-weight: bold;
+        }
+
+        .content .note {
+            color: #7B1FA2;
+            font-weight: bold;
+        }
+
+        /* 标签 */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+            padding-top: 25px;
+        }
+
+        .tag {
+            background: #FFB74D;
+            color: #5D4037;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 24px;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(255,183,77,0.4);
+        }
+
+        /* 底部 */
+        .footer {
+            margin-top: auto;
+            padding-top: 25px;
+            display: flex;
+            justify-content: space-between;
+            color: #A1887F;
+            font-size: 24px;
+        }
+
+        /* 页码 */
+        .page-num {
+            position: absolute;
+            bottom: 25px;
+            right: 50px;
+            font-size: 26px;
+            color: #BCAAA4;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="sticker">🍪</div>
+
+        <h1 class="title">标题标题标题</h1>
+
+        <div class="content">
+            <p>正文内容正文内容正文内容正文内容正文内容正文内容正文内容正文内容正文内容正文内容正文内容正文内容正文内容正文内容正文内容。</p>
+        </div>
+
+        <div class="tags">
+            <span class="tag">#话题1</span>
+            <span class="tag">#话题2</span>
+            <span class="tag">#话题3</span>
+        </div>
+
+        <div class="footer">
+            <span>🍪 收藏</span>
+            <span>❤️ 小红书</span>
+        </div>
+
+        <span class="page-num">1/1</span>
+    </div>
+</body>
+</html>

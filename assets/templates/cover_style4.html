@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小红书封面</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+            background: #1e1e2e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 0;
+        }
+
+        #container {
+            width: 1080px;
+            height: 1080px;
+            padding: 80px 60px;
+            background: linear-gradient(180deg, #1e1e2e 0%, #2d2d44 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            position: relative;
+        }
+
+        /* 星空背景装饰 */
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: twinkle 2s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* 封面标题 */
+        .cover-title {
+            font-size: 100px;
+            font-weight: 900;
+            background: linear-gradient(90deg, #a855f7, #ec4899, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.15;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 副标题 */
+        .cover-subtitle {
+            font-size: 42px;
+            color: #e2e8f0;
+            line-height: 1.5;
+            margin-bottom: 80px;
+            max-width: 850px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 封面标签 */
+        .cover-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cover-tag {
+            background: rgba(244, 114, 182, 0.2);
+            color: #f472b6;
+            padding: 20px 40px;
+            border-radius: 50px;
+            font-size: 32px;
+            font-weight: 600;
+            border: 2px solid #f472b6;
+        }
+
+        /* 底部 */
+        .cover-footer {
+            margin-top: auto;
+            padding-top: 40px;
+            color: #f472b6;
+            font-size: 24px;
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="stars">
+            <div class="star" style="top: 10%; left: 15%; animation-delay: 0s;"></div>
+            <div class="star" style="top: 20%; left: 80%; animation-delay: 0.5s;"></div>
+            <div class="star" style="top: 60%; left: 10%; animation-delay: 1s;"></div>
+            <div class="star" style="top: 80%; left: 70%; animation-delay: 1.5s;"></div>
+            <div class="star" style="top: 40%; left: 90%; animation-delay: 0.3s;"></div>
+            <div class="star" style="top: 70%; left: 30%; animation-delay: 0.8s;"></div>
+        </div>
+
+        <h1 class="cover-title">紫色星空标题</h1>
+
+        <p class="cover-subtitle">紫色星空风格的副标题，适合潮流时尚类内容</p>
+
+        <div class="cover-tags">
+            <span class="cover-tag">#潮流</span>
+            <span class="cover-tag">#时尚</span>
+            <span class="cover-tag">#打卡</span>
+        </div>
+
+        <div class="cover-footer">小红书</div>
+    </div>
+</body>
+</html>
