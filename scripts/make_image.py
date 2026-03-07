@@ -250,7 +250,70 @@ def generate_page_html(template: str, title: str, content: str = "", page: int =
     return html
 
 
-async def screenshot_from_html_string(output_path: str, html_content: str, save_html: bool = True):
+async def screenshot_from_html_file(output_path: str, html_file: str, viewport_size: tuple = None):
+    """Screenshot from HTML file (HTML Mode).
+
+    This function reads an HTML file and generates an image from it.
+    The HTML file should contain the complete HTML structure.
+
+    Args:
+        output_path: Output image path
+        html_file: HTML file path
+        viewport_size: Optional (width, height) tuple for custom viewport size
+                      If not provided, will try to detect from HTML or use default
+
+    Returns:
+        Output image path
+    """
+    # Read HTML file
+    with open(html_file, 'r', encoding='utf-8') as f:
+        html_content = f.read()
+
+    # Try to detect viewport size from HTML meta tags or container
+    if viewport_size is None:
+        viewport_size = detect_viewport_size(html_content)
+
+    return await screenshot_from_html_string(output_path, html_content, save_html=False, viewport_size=viewport_size)
+
+
+def detect_viewport_size(html_content: str) -> tuple:
+    """Detect viewport size from HTML content.
+
+    Tries to detect from:
+    1. Container element width/height in CSS
+    2. Meta viewport tag
+    3. Default size
+
+    Returns:
+        (width, height) tuple
+    """
+    import re
+
+    # Try to find container size
+    container_pattern = r'#container\s*\{[^}]*width:\s*(\d+)px[^}]*height:\s*(\d+)px'
+    match = re.search(container_pattern, html_content, re.IGNORECASE | re.DOTALL)
+    if match:
+        return (int(match.group(1)), int(match.group(2)))
+
+    # Try alternative order (height first)
+    container_pattern2 = r'#container\s*\{[^}]*height:\s*(\d+)px[^}]*width:\s*(\d+)px'
+    match2 = re.search(container_pattern2, html_content, re.IGNORECASE | re.DOTALL)
+    if match2:
+        return (int(match2.group(2)), int(match2.group(1)))
+
+    # Default size for HTML mode (1242x1660 - recommended RedNote size)
+    return (1242, 1660)
+
+
+async def screenshot_from_html_string(output_path: str, html_content: str, save_html: bool = True, viewport_size: tuple = None):
+    """Screenshot from HTML content.
+
+    Args:
+        output_path: Output image path
+        html_content: HTML content string
+        save_html: Whether to save HTML file for debugging
+        viewport_size: Optional (width, height) tuple for custom viewport size
+    """
     """Screenshot from HTML content."""
     from playwright.async_api import async_playwright
 
@@ -270,8 +333,14 @@ async def screenshot_from_html_string(output_path: str, html_content: str, save_
             except Exception as e:
                 raise RuntimeError(f"Failed to launch browser: {e}")
 
+        # Use custom viewport size if provided, otherwise use default
+        if viewport_size:
+            vw, vh = viewport_size
+        else:
+            vw, vh = 1242, 1660
+
         page = await browser.new_page(
-            viewport={'width': 1080, 'height': 1440},
+            viewport={'width': vw, 'height': vh},
             device_scale_factor=2
         )
 
@@ -398,12 +467,13 @@ async def create_images_from_template(
 async def main_async():
     parser = argparse.ArgumentParser(description="Generate RedNote style images/covers from templates")
     parser.add_argument("-t", "--template", required=True, help="HTML template file path")
-    parser.add_argument("-T", "--title", required=True, help="Title (for cover/image)")
+    parser.add_argument("-T", "--title", default="", help="Title (for cover/image, not required in HTML mode)")
     parser.add_argument("-d", "--desc", default="", help="Body content (for image note, optional for cover)")
     parser.add_argument("-o", "--output", default="rednote_image.png", help="Output path")
     parser.add_argument("-m", "--multi-page", action="store_true", help="Auto pagination for long content")
     parser.add_argument("-C", "--topics", help="Topic list, comma separated, e.g. coding,learning")
     parser.add_argument("-s", "--subtitle", default="", help="Subtitle (for cover only)")
+    parser.add_argument("--html-mode", action="store_true", help="HTML mode: directly render HTML file to image without template processing")
 
     args = parser.parse_args()
 
@@ -426,7 +496,29 @@ async def main_async():
         output_dir = os.path.dirname(args.output) or "."
         prefix = os.path.splitext(os.path.basename(args.output))[0]
 
-    print("Generating RedNote style images...\n")
+    # HTML Mode: directly render HTML file to image
+    if args.html_mode:
+        print("HTML Mode: Rendering HTML file to image...\n")
+        try:
+            output_path = await screenshot_from_html_file(args.output, args.template)
+            print(f"\nDone! Generated image: {output_path}")
+            return
+        except FileNotFoundError as e:
+            print(f"Error: HTML file not found: {e}")
+            sys.exit(1)
+        except Exception as e:
+            print(f"Failed: {e}")
+            import traceback
+            traceback.print_exc()
+            sys.exit(1)
+
+    # Template Mode (default): process template with variables
+    print("Template Mode: Generating RedNote style images...\n")
+
+    # Validate required parameters for template mode
+    if not args.title:
+        print("Error: Title is required in template mode. Use -T/--title to specify title.")
+        sys.exit(1)
 
     try:
         paths = await create_images_from_template(

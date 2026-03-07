@@ -1,12 +1,13 @@
 ---
 name: rednote-maker
-description: Generate RedNote (Xiaohongshu) style cover and image posts. Triggered when user requests generating RedNote images, covers, or image templates.
-version: 1.2.0
+description: Generate RedNote (Xiaohongshu) style cover and image posts. Triggered when user requests generating RedNote images, covers, or image templates. Supports both Text-to-Image mode and HTML Mode.
+version: 1.3.0
 author: by
 tags:
   - xiaohongshu
   - image-generator
   - template
+  - html-mode
 metadata:
   requires:
     pypi: [playwright]
@@ -15,7 +16,97 @@ metadata:
 
 # RedNote Image Generator
 
-Generate RedNote style cover and image posts.
+Generate RedNote style cover and image posts. Supports two modes:
+
+1. **Text-to-Image Mode (文图模式)**: Generate images from text content using predefined templates
+2. **HTML Mode (HTML模式)**: Generate images from custom HTML files
+
+## Two Operation Modes
+
+### Mode 1: Text-to-Image Mode (Default)
+
+In this mode, you provide text content and the system uses templates to generate images.
+
+```bash
+# Basic usage
+python rednote-maker/scripts/make_image.py -t rednote-maker/assets/templates/rednote_style1.html -T "Title" -d "Content"
+
+# With all options
+python rednote-maker/scripts/make_image.py \
+  -t rednote-maker/assets/templates/rednote_style1.html \
+  -T "Title" \
+  -d "Content" \
+  -C "topic1,topic2" \
+  -o output.png
+```
+
+### Mode 2: HTML Mode (HTML模式)
+
+In this mode, you provide a complete HTML file and the system renders it directly to an image without any template processing.
+
+**Use `--html-mode` flag to enable HTML Mode:**
+
+```bash
+# Basic HTML mode usage
+python rednote-maker/scripts/make_image.py --html-mode -t my_page.html -o output.png
+
+# With custom viewport size (optional)
+python rednote-maker/scripts/make_image.py \
+  --html-mode \
+  -t my_page.html \
+  -o output.png
+```
+
+**Key differences in HTML Mode:**
+
+| Feature | Text-to-Image Mode | HTML Mode |
+|---------|-------------------|-----------|
+| Template processing | Yes | No (direct render) |
+| Variable substitution | Yes | No |
+| Title parameter (`-T`) | Required | Not used |
+| Content parameter (`-d`) | Optional | Not used |
+| Multi-page support | Yes | No |
+| Viewport detection | Fixed | Auto-detect from HTML |
+
+**When to use HTML Mode:**
+
+- You have a complete HTML design and want to convert it to an image
+- You need full control over the HTML/CSS layout
+- You're converting web pages or custom designs to images
+- You want to bypass template processing and render HTML as-is
+
+**HTML Structure Requirements for HTML Mode:**
+
+The HTML file should be a complete, valid HTML document. The system will:
+
+1. Read the HTML file
+2. Auto-detect viewport size from CSS (looking for `#container` width/height)
+3. Render the HTML to an image
+4. Save the output
+
+**Recommended HTML structure:**
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #container {
+            width: 1242px;    /* Will be auto-detected */
+            height: 1660px;   /* Will be auto-detected */
+            /* ... */
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <!-- Your content here -->
+    </div>
+</body>
+</html>
+```
+
+If no `#container` size is found, the system defaults to **1242×1660** (RedNote recommended size).
 
 ## Trigger Conditions
 
@@ -25,6 +116,33 @@ Triggered when user requests:
 - Generate RedNote post
 - Generate image from template
 - Create RedNote style image
+- Render HTML to image
+- Convert HTML to image
+- HTML mode for image generation
+
+## Two Operation Modes
+
+This skill supports **two modes** of operation:
+
+### Mode 1: Text-to-Image Mode (文图模式) - Default
+
+User provides text content, and the system uses templates to generate images.
+
+**Command format:**
+```bash
+python rednote-maker/scripts/make_image.py -t TEMPLATE -T "Title" -d "Content" -o output.png
+```
+
+### Mode 2: HTML Mode (HTML模式)
+
+User provides a complete HTML file, and the system directly renders it to an image without template processing.
+
+**Command format:**
+```bash
+python rednote-maker/scripts/make_image.py --html-mode -t my_page.html -o output.png
+```
+
+**Key difference:** In HTML mode, the HTML file is rendered as-is without any variable substitution or template processing.
 
 ## Install Dependencies
 
@@ -35,7 +153,11 @@ playwright install webkit
 
 ## Basic Usage
 
-### Generate Image Posts
+### Mode 1: Text-to-Image Mode (Default)
+
+In this mode, the system uses predefined templates and substitutes variables to generate images.
+
+#### Generate Image Posts
 
 ```bash
 # Generate single page image from template
@@ -48,7 +170,7 @@ python rednote-maker/scripts/make_image.py -t rednote-maker/assets/templates/red
 python rednote-maker/scripts/make_image.py -t rednote-maker/assets/templates/rednote_style3.html -T "Title" -d "Content" -o my_image.png
 ```
 
-### Generate Cover Images
+#### Generate Cover Images
 
 ```bash
 # Generate cover using cover template
@@ -60,17 +182,235 @@ python rednote-maker/scripts/make_image.py \
   -o cover.png
 ```
 
+### Mode 2: HTML Mode (HTML模式)
+
+In this mode, the system directly renders a complete HTML file to an image without any template processing. This gives you full control over the HTML/CSS.
+
+#### Basic Usage
+
+```bash
+# Basic HTML mode - render HTML file to image
+python rednote-maker/scripts/make_image.py --html-mode -t my_design.html -o output.png
+
+# With specific output path
+python rednote-maker/scripts/make_image.py \
+  --html-mode \
+  -t /path/to/my_page.html \
+  -o /path/to/output.png
+```
+
+#### How HTML Mode Works
+
+1. Reads the complete HTML file
+2. Auto-detects viewport size from CSS (looking for `#container` width/height)
+3. Renders the HTML directly to an image
+4. Saves the output image
+
+**Key differences:**
+
+| Feature | Text-to-Image Mode | HTML Mode |
+|---------|-------------------|-----------|
+| Template processing | Yes | No (direct render) |
+| Variable substitution | Yes | No |
+| Title (`-T`) | Required | Not used |
+| Content (`-d`) | Optional | Not used |
+| Multi-page support | Yes | No |
+| Viewport detection | Fixed | Auto-detect from HTML |
+
+#### HTML Structure Requirements
+
+Your HTML file should be a complete, valid HTML document. The system will auto-detect the viewport size from the `#container` CSS.
+
+**Recommended structure:**
+
+```html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Design</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif;
+            background: #FAFAFA;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        #container {
+            /* This size will be auto-detected */
+            width: 1242px;
+            height: 1660px;
+            background: #FFFFFF;
+            /* ... */
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <!-- Your content here -->
+    </div>
+</body>
+</html>
+```
+
+**Auto-detection:**
+
+If no `#container` size is found, the system defaults to **1242×1660** (RedNote recommended size).
+
+#### When to Use HTML Mode
+
+- You have a complete HTML design and want to convert it to an image
+- You need full control over the HTML/CSS layout
+- You're converting web pages or custom designs to images
+- You want to bypass template processing and render HTML as-is
+
 ## Parameters
 
-| Parameter | Short | Description |
-|-----------|-------|-------------|
-| `--template` | `-t` | HTML template file path (required) |
-| `--title` | `-T` | Title (required) |
-| `--desc` | `-d` | Body content (for image, optional for cover) |
-| `--output` | `-o` | Output path, default: rednote_image.png |
-| `--multi-page` | `-m` | Auto pagination for long content (image only) |
-| `--topics` | `-C` | Topic list, comma separated, e.g. coding,learning |
-| `--subtitle` | `-s` | Subtitle (cover only) |
+| Parameter | Short | Description | Text Mode | HTML Mode |
+|-----------|-------|-------------|-----------|-----------|
+| `--template` | `-t` | HTML template file path (required) | Yes | Yes (HTML file path) |
+| `--title` | `-T` | Title (required in text mode) | Required | Not used |
+| `--desc` | `-d` | Body content | Optional | Not used |
+| `--output` | `-o` | Output path | Yes | Yes |
+| `--multi-page` | `-m` | Auto pagination | Yes | No |
+| `--topics` | `-C` | Topic list | Optional | Not used |
+| `--subtitle` | `-s` | Subtitle | Cover only | Not used |
+| `--html-mode` | - | Enable HTML Mode | No | **Yes (required)** |
+
+## HTML Mode (HTML模式) Detailed Guide
+
+### What is HTML Mode?
+
+HTML Mode allows you to convert a complete HTML file directly to an image without any template processing. The HTML is rendered as-is in a headless browser and captured as an image.
+
+### When to Use HTML Mode
+
+- **Custom designs**: You have a complete HTML/CSS design and want to convert it to an image
+- **Web page capture**: You want to convert web pages or web-based designs to images
+- **Full control**: You need complete control over the HTML structure and styling
+- **Bypass templates**: You don't want variable substitution or template processing
+
+### HTML Mode Usage
+
+```bash
+# Basic usage
+python rednote-maker/scripts/make_image.py --html-mode -t my_page.html -o output.png
+
+# With paths
+python rednote-maker/scripts/make_image.py \
+  --html-mode \
+  -t /path/to/design.html \
+  -o /path/to/output.png
+```
+
+### HTML Structure for HTML Mode
+
+Your HTML file should be a complete, valid HTML document. The system will:
+
+1. Read the HTML file
+2. Auto-detect viewport size from CSS (looking for `#container` width/height)
+3. Render the HTML in a headless browser
+4. Capture the screenshot and save as image
+
+**Recommended HTML structure:**
+
+```html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Design</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif;
+            background: #FAFAFA;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        #container {
+            /* This size will be auto-detected */
+            width: 1242px;
+            height: 1660px;
+            background: #FFFFFF;
+            padding: 60px;
+            /* ... */
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <!-- Your custom content here -->
+        <h1>My Title</h1>
+        <p>My content...</p>
+    </div>
+</body>
+</html>
+```
+
+### Viewport Size Auto-Detection
+
+In HTML Mode, the system automatically detects the viewport size from your CSS:
+
+1. **Primary detection**: Looks for `#container { width: XXXpx; height: XXXpx; }`
+2. **Fallback**: If no container size found, defaults to **1242×1660** (RedNote recommended)
+
+You can also specify a custom viewport by adding a comment in your HTML:
+```html
+<!-- viewport: 1080x1920 -->
+```
+
+### HTML Mode vs Text-to-Image Mode Comparison
+
+| Feature | Text-to-Image Mode | HTML Mode |
+|---------|-------------------|-----------|
+| **Input** | Text content + template | Complete HTML file |
+| **Template processing** | Yes (variable substitution) | No (direct render) |
+| **Title parameter** | Required | Not used |
+| **Content parameter** | Optional | Not used |
+| **Multi-page** | Supported | Not supported |
+| **Viewport size** | Fixed (1242×1660) | Auto-detect from HTML |
+| **Use case** | Quick content generation | Custom designs, web capture |
+
+### Examples
+
+**Text-to-Image Mode:**
+```bash
+# Quick post generation
+python rednote-maker/scripts/make_image.py \
+  -t rednote-maker/assets/templates/rednote_style1.html \
+  -T "今日分享" \
+  -d "今天学习了很多新知识..." \
+  -o post.png
+```
+
+**HTML Mode:**
+```bash
+# Custom design conversion
+python rednote-maker/scripts/make_image.py \
+  --html-mode \
+  -t my_custom_design.html \
+  -o custom_output.png
+```
 
 ## Available Templates
 
