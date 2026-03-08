@@ -149,6 +149,150 @@ Your HTML file should be a complete, valid HTML document with a `#container` ele
 - Full control over layout and styling
 - Bypass template processing
 
+### Font & Readability Guidelines (Important!)
+
+**To ensure text is clearly visible on mobile devices, follow these guidelines:**
+
+#### Minimum Font Sizes
+
+| Element | Minimum Size | Recommended Size |
+|---------|--------------|------------------|
+| Title | 72px | 84-108px |
+| Subtitle | 54px | 60-72px |
+| Body text | 48px | 54-66px |
+| Captions/Tags | 36px | 39-45px |
+| Page numbers | 36px | 39-42px |
+
+#### Content Overflow Prevention (Important!)
+
+**To prevent content from exceeding the 1660px container height, follow these guidelines:**
+
+| Element | Recommended Count | Notes |
+|---------|-------------------|-------|
+| Title lines | 1-2 lines | Keep titles concise |
+| Body paragraphs | 4-6 paragraphs | Reduce if using large fonts |
+| List items | 3-4 items | Use compact spacing |
+| Action boxes | 1-2 boxes | Combine content if needed |
+
+**Tips to avoid overflow:**
+
+1. **Reduce padding/margins** when content is tight:
+   ```css
+   #container { padding: 60px 50px; }  /* Instead of 80px 70px */
+   .content p { margin-bottom: 25px; } /* Instead of 35px */
+   ```
+
+2. **Use compact list spacing**:
+   ```css
+   li { margin-bottom: 12px; padding-left: 40px; }
+   ```
+
+3. **Limit action boxes** to essential content only
+
+4. **Test content fit** before generating final images
+
+#### Line Height & Spacing
+
+```css
+/* Recommended line height for readability */
+body { line-height: 1.6; }
+.title { line-height: 1.3; }
+.content { line-height: 1.8-2.0; }
+
+/* Paragraph spacing */
+p { margin-bottom: 20-30px; }
+```
+
+#### Color Contrast
+
+```css
+/* High contrast for readability */
+.title { color: #1A1A1A; }           /* Dark on light */
+.content { color: #333333; }         /* Slightly lighter */
+
+/* On dark backgrounds */
+.title { color: #FFFFFF; }           /* White on dark */
+.content { color: rgba(255,255,255,0.9); }
+
+/* Highlight colors - use sparingly */
+.highlight { color: #FF2442; }       /* Red accent */
+.tip { color: #FFD700; }             /* Gold accent */
+```
+
+#### Complete Example with Proper Sizing
+
+```html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif;
+            background: #FAFAFA;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        #container {
+            width: 1242px;
+            height: 1660px;
+            background: #FFFFFF;
+            padding: 70px 60px;
+        }
+
+        /* Title: 84-108px recommended */
+        .title {
+            font-size: 96px;
+            font-weight: 700;
+            color: #1A1A1A;
+            line-height: 1.3;
+            margin-bottom: 40px;
+        }
+
+        /* Body: 54-66px recommended */
+        .content {
+            font-size: 60px;
+            color: #333333;
+            line-height: 1.9;
+        }
+
+        .content p {
+            margin-bottom: 25px;
+        }
+
+        /* Tags: 39-45px recommended */
+        .tag {
+            font-size: 42px;
+            padding: 12px 24px;
+        }
+
+        /* Page number: 39-42px recommended */
+        .page-num {
+            font-size: 42px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1 class="title">标题文字</h1>
+        <div class="content">
+            <p>正文内容，字号40px确保手机上清晰可见。</p>
+        </div>
+    </div>
+</body>
+</html>
+```
+
+#### Why These Sizes?
+
+- **1242px width** is 2x the iPhone logical resolution (621pt)
+- **40px font** appears as ~20pt on screen, comfortable for reading
+- **Smaller fonts** may look blurry or hard to read on mobile devices
+
 ---
 
 ## Available Templates
@@ -285,6 +429,111 @@ Triggered when user requests:
 - Convert HTML to image
 
 ---
+
+## Writing RedNote-Style Copy
+
+When generating RedNote (Xiaohongshu) content, follow these copywriting guidelines:
+
+### RedNote Copy Style Characteristics
+
+**1. Conversational and Personal**
+- Write as if chatting with a friend
+- Use first-person perspective ("I", "my")
+- Be relatable and authentic
+
+**Example:**
+```
+❌ "This product is very good and recommended."
+✅ "OMG! I've been using this for a week and my skin is literally glowing!"
+```
+
+**2. Use Emotional Expressions**
+- Common RedNote expressions:
+  - "绝了" (Absolutely amazing)
+  - "种草" (Recommend / Put on wishlist)
+  - "拔草" (Bought and tried)
+  - "YYDS" (Eternal god - best ever)
+  - "宝藏" (Hidden gem)
+  - "踩雷" (Bad experience)
+  - "干货" (Solid content / Useful info)
+
+**3. Rich Formatting**
+- Use emojis liberally ✨🌟💫
+- Short paragraphs (2-3 lines max)
+- Use bullet points and numbering
+- Add personal touches and anecdotes
+
+**4. Hashtag Strategy**
+- Include 3-5 relevant hashtags
+- Mix of broad and specific tags
+- Popular tags: #小红书 #好物分享 #生活记录 #ootd
+
+### Copy Templates
+
+**Template 1: Product Review**
+```
+标题：被问了800遍的XX！真的绝了！
+
+姐妹们！今天必须给你们安利这个XX！
+✨ 颜值：绝绝子！实物比图片还好看
+✨ 使用感：超级XX，完全不XX
+✨ 性价比：学生党也能冲！
+
+用了XX天真的离不开了！
+姐妹们快冲！🏃‍♀️💨
+
+#好物分享 #XX推荐 #宝藏好物
+```
+
+**Template 2: Tutorial/Guide**
+```
+标题：保姆级XX教程！新手一看就会！
+
+姐妹们要的XX教程来啦！
+全程干货！建议收藏⭐
+
+Step 1: XX
+💡 小技巧：XX
+
+Step 2: XX
+⚠️ 注意：XX
+
+Step 3: XX
+✨ 效果：XX
+
+真的超级简单！
+手残党也能学会！
+快去试试吧～
+
+#干货分享 #XX教程 #新手必看
+```
+
+**Template 3: Lifestyle/Plog**
+```
+标题：XX日常｜这就是我想要的生活✨
+
+记录一下今天的XX～
+
+🌞 早上XX
+☕ 中午XX
+🌙 晚上XX
+
+虽然是很平常的一天
+但是感觉很幸福💕
+
+你们今天过得怎么样？
+评论区聊聊吧～
+
+#日常记录 #生活碎片 #plog
+```
+
+## Image Size Guidelines
+
+| Type | Size | Aspect Ratio |
+|------|------|--------------|
+| Cover | 1080×1080px or 1080×1350px | 1:1 or 4:5 |
+| Post Images | 1242×1660px (recommended) | 3:4 |
+| Long Images | 1080×1920px | 9:16 |
 
 ## Notes
 

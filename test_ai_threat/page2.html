@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI威胁论 - 第2页</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif;
+            background: #FAFAFA;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        #container {
+            width: 1242px;
+            height: 1660px;
+            padding: 60px 55px;
+            background: linear-gradient(180deg, #1a0a0a 0%, #2d1515 100%);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .title {
+            font-size: 78px;
+            font-weight: 900;
+            color: #FFFFFF;
+            line-height: 1.2;
+            margin-bottom: 40px;
+        }
+
+        .title .highlight {
+            color: #ef4444;
+        }
+
+        .threat-list {
+            flex: 1;
+        }
+
+        .threat-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 32px;
+            background: rgba(220, 38, 38, 0.1);
+            padding: 28px 35px;
+            border-radius: 18px;
+            border-left: 5px solid #dc2626;
+        }
+
+        .threat-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-right: 25px;
+            flex-shrink: 0;
+        }
+
+        .threat-content h3 {
+            font-size: 48px;
+            color: #FFFFFF;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .threat-content p {
+            font-size: 42px;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.4;
+        }
+
+        .threat-content .stat {
+            color: #fca5a5;
+            font-weight: 600;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin-top: auto;
+        }
+
+        .tag {
+            background: rgba(220, 38, 38, 0.2);
+            color: #FFFFFF;
+            padding: 14px 28px;
+            border-radius: 30px;
+            font-size: 38px;
+            font-weight: 500;
+            border: 1px solid rgba(220, 38, 38, 0.4);
+        }
+
+        .page-num {
+            position: absolute;
+            bottom: 35px;
+            right: 55px;
+            font-size: 38px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1 class="title">AI 带来的<br/><span class="highlight">三大威胁</span></h1>
+
+        <div class="threat-list">
+            <div class="threat-item">
+                <div class="threat-icon">💼</div>
+                <div class="threat-content">
+                    <h3>失业危机</h3>
+                    <p>预计到2030年，<span class="stat">8亿岗位</span>将被AI取代！</p>
+                </div>
+            </div>
+
+            <div class="threat-item">
+                <div class="threat-icon">🧠</div>
+                <div class="threat-content">
+                    <h3>思维操控</h3>
+                    <p>AI算法正在<span class="stat">控制你看到的信息</span>！</p>
+                </div>
+            </div>
+
+            <div class="threat-item">
+                <div class="threat-icon">🔒</div>
+                <div class="threat-content">
+                    <h3>隐私泄露</h3>
+                    <p>AI比你更了解你，<span class="stat">每一步都被记录</span>！</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="tags">
+            <span class="tag">#失业危机</span>
+            <span class="tag">#隐私泄露</span>
+        </div>
+
+        <span class="page-num">2/3</span>
+    </div>
+</body>
+</html>
