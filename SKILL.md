@@ -286,6 +286,111 @@ Triggered when user requests:
 
 ---
 
+## Writing RedNote-Style Copy
+
+When generating RedNote (Xiaohongshu) content, follow these copywriting guidelines:
+
+### RedNote Copy Style Characteristics
+
+**1. Conversational and Personal**
+- Write as if chatting with a friend
+- Use first-person perspective ("I", "my")
+- Be relatable and authentic
+
+**Example:**
+```
+❌ "This product is very good and recommended."
+✅ "OMG! I've been using this for a week and my skin is literally glowing!"
+```
+
+**2. Use Emotional Expressions**
+- Common RedNote expressions:
+  - "绝了" (Absolutely amazing)
+  - "种草" (Recommend / Put on wishlist)
+  - "拔草" (Bought and tried)
+  - "YYDS" (Eternal god - best ever)
+  - "宝藏" (Hidden gem)
+  - "踩雷" (Bad experience)
+  - "干货" (Solid content / Useful info)
+
+**3. Rich Formatting**
+- Use emojis liberally ✨🌟💫
+- Short paragraphs (2-3 lines max)
+- Use bullet points and numbering
+- Add personal touches and anecdotes
+
+**4. Hashtag Strategy**
+- Include 3-5 relevant hashtags
+- Mix of broad and specific tags
+- Popular tags: #小红书 #好物分享 #生活记录 #ootd
+
+### Copy Templates
+
+**Template 1: Product Review**
+```
+标题：被问了800遍的XX！真的绝了！
+
+姐妹们！今天必须给你们安利这个XX！
+✨ 颜值：绝绝子！实物比图片还好看
+✨ 使用感：超级XX，完全不XX
+✨ 性价比：学生党也能冲！
+
+用了XX天真的离不开了！
+姐妹们快冲！🏃‍♀️💨
+
+#好物分享 #XX推荐 #宝藏好物
+```
+
+**Template 2: Tutorial/Guide**
+```
+标题：保姆级XX教程！新手一看就会！
+
+姐妹们要的XX教程来啦！
+全程干货！建议收藏⭐
+
+Step 1: XX
+💡 小技巧：XX
+
+Step 2: XX
+⚠️ 注意：XX
+
+Step 3: XX
+✨ 效果：XX
+
+真的超级简单！
+手残党也能学会！
+快去试试吧～
+
+#干货分享 #XX教程 #新手必看
+```
+
+**Template 3: Lifestyle/Plog**
+```
+标题：XX日常｜这就是我想要的生活✨
+
+记录一下今天的XX～
+
+🌞 早上XX
+☕ 中午XX
+🌙 晚上XX
+
+虽然是很平常的一天
+但是感觉很幸福💕
+
+你们今天过得怎么样？
+评论区聊聊吧～
+
+#日常记录 #生活碎片 #plog
+```
+
+## Image Size Guidelines
+
+| Type | Size | Aspect Ratio |
+|------|------|--------------|
+| Cover | 1080×1080px or 1080×1350px | 1:1 or 4:5 |
+| Post Images | 1242×1660px (recommended) | 3:4 |
+| Long Images | 1080×1920px | 9:16 |
+
 ## Notes
 
 - Supports jpg, png, jpeg formats
