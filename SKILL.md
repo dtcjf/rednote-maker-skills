@@ -157,11 +157,39 @@ Your HTML file should be a complete, valid HTML document with a `#container` ele
 
 | Element | Minimum Size | Recommended Size |
 |---------|--------------|------------------|
-| Title | 48px | 56-72px |
-| Subtitle | 36px | 40-48px |
-| Body text | 32px | 36-44px |
-| Captions/Tags | 24px | 26-30px |
-| Page numbers | 24px | 26-28px |
+| Title | 72px | 84-108px |
+| Subtitle | 54px | 60-72px |
+| Body text | 48px | 54-66px |
+| Captions/Tags | 36px | 39-45px |
+| Page numbers | 36px | 39-42px |
+
+#### Content Overflow Prevention (Important!)
+
+**To prevent content from exceeding the 1660px container height, follow these guidelines:**
+
+| Element | Recommended Count | Notes |
+|---------|-------------------|-------|
+| Title lines | 1-2 lines | Keep titles concise |
+| Body paragraphs | 4-6 paragraphs | Reduce if using large fonts |
+| List items | 3-4 items | Use compact spacing |
+| Action boxes | 1-2 boxes | Combine content if needed |
+
+**Tips to avoid overflow:**
+
+1. **Reduce padding/margins** when content is tight:
+   ```css
+   #container { padding: 60px 50px; }  /* Instead of 80px 70px */
+   .content p { margin-bottom: 25px; } /* Instead of 35px */
+   ```
+
+2. **Use compact list spacing**:
+   ```css
+   li { margin-bottom: 12px; padding-left: 40px; }
+   ```
+
+3. **Limit action boxes** to essential content only
+
+4. **Test content fit** before generating final images
 
 #### Line Height & Spacing
 
@@ -216,18 +244,18 @@ p { margin-bottom: 20-30px; }
             padding: 70px 60px;
         }
 
-        /* Title: 56-72px recommended */
+        /* Title: 84-108px recommended */
         .title {
-            font-size: 64px;
+            font-size: 96px;
             font-weight: 700;
             color: #1A1A1A;
             line-height: 1.3;
             margin-bottom: 40px;
         }
 
-        /* Body: 36-44px recommended */
+        /* Body: 54-66px recommended */
         .content {
-            font-size: 40px;
+            font-size: 60px;
             color: #333333;
             line-height: 1.9;
         }
@@ -236,15 +264,15 @@ p { margin-bottom: 20-30px; }
             margin-bottom: 25px;
         }
 
-        /* Tags: 26-30px recommended */
+        /* Tags: 39-45px recommended */
         .tag {
-            font-size: 28px;
+            font-size: 42px;
             padding: 12px 24px;
         }
 
-        /* Page number: 26-28px recommended */
+        /* Page number: 39-42px recommended */
         .page-num {
-            font-size: 26px;
+            font-size: 42px;
         }
     </style>
 </head>
