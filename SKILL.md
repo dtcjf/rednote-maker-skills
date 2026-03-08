@@ -149,6 +149,122 @@ Your HTML file should be a complete, valid HTML document with a `#container` ele
 - Full control over layout and styling
 - Bypass template processing
 
+### Font & Readability Guidelines (Important!)
+
+**To ensure text is clearly visible on mobile devices, follow these guidelines:**
+
+#### Minimum Font Sizes
+
+| Element | Minimum Size | Recommended Size |
+|---------|--------------|------------------|
+| Title | 48px | 56-72px |
+| Subtitle | 36px | 40-48px |
+| Body text | 32px | 36-44px |
+| Captions/Tags | 24px | 26-30px |
+| Page numbers | 24px | 26-28px |
+
+#### Line Height & Spacing
+
+```css
+/* Recommended line height for readability */
+body { line-height: 1.6; }
+.title { line-height: 1.3; }
+.content { line-height: 1.8-2.0; }
+
+/* Paragraph spacing */
+p { margin-bottom: 20-30px; }
+```
+
+#### Color Contrast
+
+```css
+/* High contrast for readability */
+.title { color: #1A1A1A; }           /* Dark on light */
+.content { color: #333333; }         /* Slightly lighter */
+
+/* On dark backgrounds */
+.title { color: #FFFFFF; }           /* White on dark */
+.content { color: rgba(255,255,255,0.9); }
+
+/* Highlight colors - use sparingly */
+.highlight { color: #FF2442; }       /* Red accent */
+.tip { color: #FFD700; }             /* Gold accent */
+```
+
+#### Complete Example with Proper Sizing
+
+```html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif;
+            background: #FAFAFA;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        #container {
+            width: 1242px;
+            height: 1660px;
+            background: #FFFFFF;
+            padding: 70px 60px;
+        }
+
+        /* Title: 56-72px recommended */
+        .title {
+            font-size: 64px;
+            font-weight: 700;
+            color: #1A1A1A;
+            line-height: 1.3;
+            margin-bottom: 40px;
+        }
+
+        /* Body: 36-44px recommended */
+        .content {
+            font-size: 40px;
+            color: #333333;
+            line-height: 1.9;
+        }
+
+        .content p {
+            margin-bottom: 25px;
+        }
+
+        /* Tags: 26-30px recommended */
+        .tag {
+            font-size: 28px;
+            padding: 12px 24px;
+        }
+
+        /* Page number: 26-28px recommended */
+        .page-num {
+            font-size: 26px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1 class="title">标题文字</h1>
+        <div class="content">
+            <p>正文内容，字号40px确保手机上清晰可见。</p>
+        </div>
+    </div>
+</body>
+</html>
+```
+
+#### Why These Sizes?
+
+- **1242px width** is 2x the iPhone logical resolution (621pt)
+- **40px font** appears as ~20pt on screen, comfortable for reading
+- **Smaller fonts** may look blurry or hard to read on mobile devices
+
 ---
 
 ## Available Templates
